@@ -1,26 +1,26 @@
 #!/usr/bin/env bash
 [ -t 1 ] || exec kitty --title konah-tui bash "$0"
-. "$HOME/.config/konahchan/link"
+. "$HOME/.config/konah/link"
 
 # If konahchan exists but isn't executable
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
-if [ -f "$SCRIPT_DIR/konahchan-grabber" ] && [ ! -x "$SCRIPT_DIR/konahchan-grabber" ]; then
-    chmod +x "$SCRIPT_DIR/konahchan-grabber"
+if [ -f "$SCRIPT_DIR/konah-grabber.sh" ] && [ ! -x "$SCRIPT_DIR/konah-grabber.sh" ]; then
+    chmod +x "$SCRIPT_DIR/konah-grabber.sh"
 fi
 
-if [ -f "$SCRIPT_DIR/konahchan.sh" ] && [ ! -x "$SCRIPT_DIR/konahchan.sh" ]; then
-    chmod +x "$SCRIPT_DIR/konahchan.sh"
+if [ -f "$SCRIPT_DIR/konah.sh" ] && [ ! -x "$SCRIPT_DIR/konah.sh" ]; then
+    chmod +x "$SCRIPT_DIR/konah.sh"
 fi
 
-CONF="$HOME/.config/konahchan/konah.conf"
+CONF="$HOME/.config/konah/konah.conf"
 
-mkdir -p $HOME/.config/konahchan
+mkdir -p $HOME/.config/konah
 touch "$CONF"
-touch $HOME/.config/konahchan/hypridle_snippet.conf
+touch $HOME/.config/konah/hypridle_snippet.conf
 
 # --- PATHS ---
 HYPR_CONF="$HOME/.config/hypr/hypridle.conf"
-SNIPPET_CONF="$HOME/.config/konahchan/hypridle_snippet.conf"
+SNIPPET_CONF="$HOME/.config/konah/hypridle_snippet.conf"
 
 touch "$SNIPPET_CONF"
 
@@ -113,7 +113,7 @@ case "$key" in
     case $idx in
       0)  # Apply Wallpaper
           # This finds the actual folder where THIS menu script is sitting
-          GRABBER="$SCRIPT_DIR/konahchan-grabber"
+          GRABBER="$SCRIPT_DIR/konah-grabber.sh"
 
           if [ -f "$GRABBER" ]; then
               # We use 'bash' so we don't need chmod +x
@@ -182,14 +182,14 @@ case "$key" in
           read -rp "Duration (minutes, 0/empty = disable): " DURATION
 
           if [[ -n "$DURATION" && "$DURATION" -gt 0 ]]; then
-              cat > "$HOME/.config/konahchan/hypridle_snippet.conf" <<EOF
+              cat > "$HOME/.config/konah/hypridle_snippet.conf" <<EOF
 listener {
     timeout = $(($DURATION * 60))
-    on-timeout = bash $SCRIPT_DIR/konahchan-grabber
+    on-timeout = bash $SCRIPT_DIR/konah-grabber.sh
 }
 EOF
           else
-              echo "" > "$HOME/.config/konahchan/hypridle_snippet.conf"
+              echo "" > "$HOME/.config/konah/hypridle_snippet.conf"
           fi
           systemctl --user restart hypridle
           ;;
@@ -240,8 +240,8 @@ EOF
           done
           ;;
       6)  # Open current link
-    if [ -f $HOME/.config/konahchan/link ]; then
-        . $HOME/.config/konahchan/link  # reload the latest link
+    if [ -f $HOME/.config/konah/link ]; then
+        . $HOME/.config/konah/link  # reload the latest link
     fi
     [ -n "$LINK" ] && xdg-open "$LINK" >/dev/null 2>&1 &
     ;;

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-. "$HOME/.config/konahchan/konah.conf"
+. "$HOME/.config/konah/konah.conf"
 
 # --- CONFIG FILES ---
-LAST_WALLPAPER_FILE="$HOME/.config/konahchan/path"
+LAST_WALLPAPER_FILE="$HOME/.config/konah/path"
 
 # Build the query
 QUERY_TAGS=$(echo "$TAGS width:$WIDTH.. height:$HEIGHT.. rating:$RATING order:random" | sed 's/ /+/g')
@@ -21,8 +21,8 @@ if [ "$URL" = "null" ] || [ -z "$URL" ]; then
 fi
 
 # Save the link for your menu script
-mkdir -p $HOME/.config/konahchan
-printf 'LINK="%s"\n' "$URL" > $HOME/.config/konahchan/link
+mkdir -p $HOME/.config/konah
+printf 'LINK="%s"\n' "$URL" > $HOME/.config/konah/link
 
 # --- DYNAMIC FILENAME LOGIC ---
 FILENAME=$(basename "$URL")
