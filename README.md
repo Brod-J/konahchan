@@ -2,7 +2,7 @@ Or konah is a script that change wallpaper built for hyprland can also work on o
 tested on KDE
 
 ### TUI
-![tui](ScreenShot/TUI.png)
+![tui](Preview/TUI.png)
 
 ### Preview
-![preview](ScreenShot/konahpreview.mp4)
+<video src="Preview/konahpreview.mp4" width="600" autoplay loop muted></video> github readme
