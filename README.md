@@ -3,3 +3,6 @@ tested on KDE
 
 ### TUI
 ![tui](ScreenShot/TUI.png)
+
+### Preview
+![preview](ScreenShot/konahpreview.mp4)
