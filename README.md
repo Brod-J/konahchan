@@ -60,11 +60,11 @@ no_blur = true
 }
 ```
 
-#make sure hyprland bind paths are correct 
+make sure hyprland bind paths are correct 
 ```bash
 # Opens the TUI to change settings
-bind = $mainMod SHIFT, W, exec, ~/path/to/konah/konah.sh
+bind = $mainMod SHIFT, W, exec, #~/path/to/konah/konah.sh
 
 # Quickly grab a new wallpaper with current settings
-bind = $mainMod, W, exec, ~/path/to/konah/konah-grabber.sh
+bind = $mainMod, W, exec, #~/path/to/konah/konah-grabber.sh
 ```
