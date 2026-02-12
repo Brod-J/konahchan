@@ -5,5 +5,5 @@ tested on KDE
 ![tui](Preview/TUI.png)
 
 <a href="https://www.youtube.com/watch?v=j5b5qll0UoY">
-  <img src="Preview/fake-video.png" width="600">
+  <img src="Preview/fakeyoutubebutton.png" width="600">
 </a>
