@@ -20,6 +20,7 @@ Konah is a lightweight, TUI-based wallpaper manager. While built with **Hyprland
 
 - **Portability:** Self-healing script that manages its own execution permissions and work in whatever path its copied to. 
 - **Dynamic Fetching:** Pulls high-quality wallpapers directly from Konachan based on your tags.  
+- **Animated:** Supports the tag `animated` because Swww supports GIFs.
 - **TUI Interface:** Interactive menu to change tags, ratings, resolution, and transition settings on the fly.  
 - **Hypridle Integration:** Automatically updates your `hypridle.conf` to rotate wallpapers after a set period of inactivity.  
 - **Performance Optimized:** Built-in cleanup ensures `/tmp` doesn't get cluttered with old images.   
@@ -60,7 +61,7 @@ no_blur = true
 }
 ```
 
-make sure hyprland bind paths are correct 
+make sure hyprland bind paths are correct not to mention the exec-once for a boot wallpaper
 ```bash
 # Opens the TUI to change settings
 bind = $mainMod SHIFT, W, exec, #~/path/to/konah/konah.sh
