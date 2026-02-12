@@ -4,5 +4,4 @@ tested on KDE
 ### TUI
 ![tui](Preview/TUI.png)
 
-### Preview
-<video src="Preview/konahpreview.mp4" width="600" autoplay loop muted playsinline></video>>
+[▶ Youtube 15s Preview](https://www.youtube.com/watch?v=j5b5qll0UoY)
