@@ -4,4 +4,6 @@ tested on KDE
 ### TUI
 ![tui](Preview/TUI.png)
 
-[▶ Youtube 15s Preview](https://www.youtube.com/watch?v=j5b5qll0UoY)
+<a href="https://www.youtube.com/watch?v=j5b5qll0UoY">
+  <img src="Preview/fake-video.png" width="600">
+</a>
