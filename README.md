@@ -1,6 +1,6 @@
 # Konah
 
-Konah is a lightweight, TUI-based wallpaper manager. While built with **Hyprland** in mind, it works on any Desktop Environment (tested on KDE) as long as **swww** is used for the wallpaper backend.
+Konah is a lightweight, TUI-based wallpaper manager. While built with **Hyprland** in mind, it works on any Desktop Environment (tested on KDE) as long as **swww/awww** is used for the wallpaper backend.
 
 ---
 
@@ -19,8 +19,9 @@ Konah is a lightweight, TUI-based wallpaper manager. While built with **Hyprland
 ## Features
 
 - **Portability:** Self-healing script that manages its own execution permissions and work in whatever path its copied to. 
+- **Dynamic Backend:** Automatically detects and supports both `swww` and the new `awww` (Codeberg) daemons.
 - **Dynamic Fetching:** Pulls high-quality wallpapers directly from Konachan based on your tags.  
-- **Animated:** Supports the tag `animated` because Swww supports GIFs.
+- **Animated:** Supports the tag `animated` because Swww/Awww supports GIFs.
 - **TUI Interface:** Interactive menu to change tags, ratings, resolution, and transition settings on the fly.  
 - **Hypridle Integration:** Automatically updates your `hypridle.conf` to rotate wallpapers after a set period of inactivity.  
 - **Performance Optimized:** Built-in cleanup ensures `/tmp` doesn't get cluttered with old images.   

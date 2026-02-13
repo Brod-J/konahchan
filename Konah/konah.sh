@@ -2,6 +2,16 @@
 [ -t 1 ] || exec kitty --title konah-tui bash "$0"
 . "$HOME/.config/konah/link"
 
+if command -v awww >/dev/null 2>&1; then
+    DAEMON="Awww"
+elif command -v swww >/dev/null 2>&1; then
+    DAEMON="Swww"
+else
+    echo "Error: Neither awww nor swww found."
+    sleep 2
+    exit 1
+fi
+
 # If konahchan exists but isn't executable
 SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 if [ -f "$SCRIPT_DIR/konah-grabber.sh" ] && [ ! -x "$SCRIPT_DIR/konah-grabber.sh" ]; then
@@ -53,8 +63,8 @@ save() {
 cat > "$CONF" <<EOF
 TAGS="$TAGS"
 RATING="$RATING"
-WIDTH="$WIDTH"
-HEIGHT="$HEIGHT"
+WIDTH="${WIDTH:-0}"
+HEIGHT="${HEIGHT:-0}"
 DURATION="$DURATION"
 TRANSITION="$TRANSITION"
 FPS="$FPS"
@@ -66,7 +76,7 @@ defaults
 load
 
 # Menu items
-items=("Change" "Tags" "Rating" "Resolution" "Duration" "Swww" "Download" "Exit")
+items=("Change" "Tags" "Rating" "Resolution" "Duration" "$DAEMON" "Download" "Exit")
 idx=0
 
 draw() {
@@ -185,7 +195,7 @@ case "$key" in
               cat > "$HOME/.config/konah/hypridle_snippet.conf" <<EOF
 listener {
     timeout = $(($DURATION * 60))
-    on-timeout = bash $SCRIPT_DIR/konah-grabber.sh
+    on-resume = bash $SCRIPT_DIR/konah-grabber.sh
 }
 EOF
           else
@@ -193,12 +203,12 @@ EOF
           fi
           systemctl --user restart hypridle
           ;;
-      5)  # Swww submenu
+      5)  # Awww/Swww submenu
           sidx=0
           sitems=("Transition" "FPS" "Step" "Back")
           while true; do
               clear
-              echo "Swww Settings"
+              echo "$DAEMON Settings"
               echo
               for i in "${!sitems[@]}"; do
                   case $i in

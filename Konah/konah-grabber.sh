@@ -36,28 +36,40 @@ curl -s -L "$URL" -o "$FILEPATH"
 # Check if download succeeded
 if [ -s "$FILEPATH" ]; then
 
-    #Ensure the daemon is running
-    if ! pgrep -x "swww-daemon" > /dev/null; then
-        echo "Starting swww-daemon..."
-        swww-daemon &
-        sleep 0.5
-    fi
+# --- DAEMON DETECTION ---
+# Check for awww first (the new standard), then fallback to swww
+if command -v awww >/dev/null 2>&1; then
+    CMD="awww"
+    DAEMON="awww-daemon"
+elif command -v swww >/dev/null 2>&1; then
+    CMD="swww"
+    DAEMON="swww-daemon"
+else
+    echo "Error: Neither awww nor swww found."
+    exit 1
+fi
 
-    #Set the wallpaper
-    swww img "$FILEPATH" \
-        --transition-type "$TRANSITION" \
-        --transition-step "$STEP" \
-        --transition-fps "$FPS"
+# --- ENSURE DAEMON IS RUNNING ---
+if ! pgrep -x "$DAEMON" > /dev/null; then
+    echo "Starting $DAEMON..."
+    "$DAEMON" &
+    sleep 1
+fi
 
-    echo "Wallpaper updated!"
+# --- APPLY WALLPAPER ---
+# We use $CMD variable so it works with either program
+"$CMD" img "$FILEPATH" \
+    --transition-type "$TRANSITION" \
+    --transition-step "$STEP" \
+    --transition-fps "$FPS"
 
+    echo "Wallpaper updated! $DAEMON"
     #CLEANUP: Delete the PREVIOUS wallpaper if it exists
     if [ -f "$LAST_WALLPAPER_FILE" ]; then
         OLD_FILE=$(cat "$LAST_WALLPAPER_FILE")
         # Check if it's a valid file and NOT the same as the new one (just in case)
         if [ -f "$OLD_FILE" ] && [ "$OLD_FILE" != "$FILEPATH" ]; then
             echo "Removing old wallpaper"
-            sleep 1
             rm "$OLD_FILE"
         fi
     fi
