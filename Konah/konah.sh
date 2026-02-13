@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 [ -t 1 ] || exec kitty --title konah-tui bash "$0"
+
 . "$HOME/.config/konah/link"
 
 if command -v awww >/dev/null 2>&1; then
@@ -122,7 +123,6 @@ case "$key" in
   "")  # Enter
     case $idx in
       0)  # Apply Wallpaper
-          # This finds the actual folder where THIS menu script is sitting
           GRABBER="$SCRIPT_DIR/konah-grabber.sh"
 
           if [ -f "$GRABBER" ]; then
@@ -187,7 +187,7 @@ case "$key" in
         save
     done
     ;;
-      4)  # Duration / Hypridle logic
+      4)  # Duration / Hypridle
           SCRIPT_DIR="$(dirname "$(readlink -f "$0")")" # Get the path
           read -rp "Duration (minutes, 0/empty = disable): " DURATION
 

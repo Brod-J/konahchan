@@ -37,7 +37,6 @@ curl -s -L "$URL" -o "$FILEPATH"
 if [ -s "$FILEPATH" ]; then
 
 # --- DAEMON DETECTION ---
-# Check for awww first (the new standard), then fallback to swww
 if command -v awww >/dev/null 2>&1; then
     CMD="awww"
     DAEMON="awww-daemon"
@@ -57,7 +56,6 @@ if ! pgrep -x "$DAEMON" > /dev/null; then
 fi
 
 # --- APPLY WALLPAPER ---
-# We use $CMD variable so it works with either program
 "$CMD" img "$FILEPATH" \
     --transition-type "$TRANSITION" \
     --transition-step "$STEP" \
@@ -67,7 +65,6 @@ fi
     #CLEANUP: Delete the PREVIOUS wallpaper if it exists
     if [ -f "$LAST_WALLPAPER_FILE" ]; then
         OLD_FILE=$(cat "$LAST_WALLPAPER_FILE")
-        # Check if it's a valid file and NOT the same as the new one (just in case)
         if [ -f "$OLD_FILE" ] && [ "$OLD_FILE" != "$FILEPATH" ]; then
             echo "Removing old wallpaper"
             rm "$OLD_FILE"
