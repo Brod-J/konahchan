@@ -1,6 +1,6 @@
 # Konah
 
-Konah is a lightweight, TUI-based wallpaper manager. While built with **Hyprland** in mind, it works on any Desktop Environment (tested on KDE) as long as **swww/awww** is used for the wallpaper backend.
+Konah is a lightweight, TUI-based wallpaper manager. While built with **Hyprland** in mind, it should work on other Desktop Environments (tested on KDE) as long as **swww/awww** is used for the wallpaper backend.
 
 ---
 
